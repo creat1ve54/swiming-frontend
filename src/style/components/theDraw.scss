@@ -1,0 +1,88 @@
+.the-draw {
+  &__checked {
+    cursor: pointer;
+    background-color: $Accent40;
+    &-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 13px;
+      color: $WWhite;
+    }
+    &--active {
+      background-color: $Accent80;
+      // background-color: pink;
+      // border-radius: 20px;
+    }
+
+    &--loading {
+      cursor: default;
+      background-color: $BSupport;
+    }
+  }
+
+  &__cell {
+    padding: 8px 16px;
+    &--active {
+      background-color: $Accent10;
+    }
+
+    &-text {
+      padding: 16px;
+      text-align: start;
+    }
+  }
+
+  &__thead {
+    &-start {
+      background: none;
+      th {
+        border-radius: 12px 12px 0px 0px;
+        padding: 13px 22px;
+      }
+    }
+
+    &-main {
+      th {
+        &:last-child {
+          border-radius: 0 12px 0 0px;
+        }
+      }
+    }
+  }
+
+  &__btns {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    position: sticky;
+    bottom: 0;
+    background-color: $WBg;
+  }
+
+  &__btn {
+    flex: 1 1 auto;
+    &-spend {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: $Accent20;
+      border-radius: 12px;
+      padding: 8px 24px;
+      color: $Accent80;
+    }
+
+    &-reset {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: $HelpingRed10;
+      border-radius: 12px;
+      padding: 8px 24px;
+      color: $HelpingRed100;
+    }
+  }
+}

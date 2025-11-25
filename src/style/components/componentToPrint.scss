@@ -1,0 +1,120 @@
+// .component-to-print {
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     background-color: $white;
+//     width: 100vw;
+//     height: 100%;
+//     z-index: 2222;
+// }
+
+// .sportsman-list {
+//   list-style-type: decimal;
+// }
+
+.component-to-print {
+  padding: 20px;
+
+  &__tournament {
+    &-name {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      font-family: "Times New Roman";
+      margin-bottom: 10px;
+    }
+
+    &-date {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      font-family: "Times New Roman";
+    }
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: "Times New Roman";
+    margin-bottom: 10px;
+  }
+
+  &__age-subgroup {
+    font-size: 11px;
+    font-weight: 600;
+    font-family: "Times New Roman";
+    margin-bottom: 10px;
+  }
+
+  &__team {
+    font-size: 11px;
+    font-weight: 600;
+    font-family: "Times New Roman";
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+
+  table {
+    width: 100%;
+
+    tr {
+      position: initial;
+      text-align: initial;
+      background-color: initial;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  td {
+    display: inline-block;
+    border: none;
+  }
+
+  &__table {
+    &-thead {
+      &-row {
+        border-top: 1px solid #000000;
+        border-bottom: 1px solid #000000;
+      }
+      &-title {
+        font-size: 9px;
+        font-family: "Times New Roman";
+        padding: 0 10px;
+        &:nth-child(1) {
+          padding-left: 20px;
+          width: 70px;
+        }
+        &:nth-child(2) {
+          width: 150px;
+        }
+        &:nth-child(4) {
+          padding-right: 30px;
+        }
+      }
+    }
+    &-tbody {
+      &-title {
+        font-size: 11px;
+        font-family: "Times New Roman";
+        padding: 0 10px;
+        &:nth-child(1) {
+          padding-left: 20px;
+          width: 50px;
+        }
+        &:nth-child(2) {
+          padding-left: 0;
+          width: 180px;
+        }
+        &:nth-child(4) {
+          padding-right: 30px;
+        }
+      }
+    }
+  }
+}

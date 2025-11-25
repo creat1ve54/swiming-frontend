@@ -1,0 +1,31 @@
+.references-btns {
+  padding: 20px;
+  &__link {
+    display: block;
+    border: none;
+    background-color: inherit;
+    text-decoration: none;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    text-align: start;
+    background-color: $WWhite;
+    transition: all 0.3s ease-in-out;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: $BReserve;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+
+  &__item {
+    max-width: 500px;
+  }
+  &__list {
+    list-style: none;
+    padding: 0;
+  }
+}

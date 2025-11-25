@@ -1,0 +1,164 @@
+.the-judging-team {
+  &__container {
+    margin-bottom: 20px;
+  }
+
+  &__caption {
+    margin-bottom: 20px;
+
+    span {
+      font-weight: 600;
+      font-size: 16px;
+    }
+  }
+
+  &__add {
+    &-ref {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 9px;
+      border-radius: 12px;
+      width: 100%;
+      background-color: $Accent20;
+      color: $Accent80;
+      font-weight: 400;
+      font-size: 18px;
+      font-family: $fontFamily;
+    }
+  }
+
+  &__brigada {
+    width: 50%;
+    flex: 0 0 auto;
+
+    &:not(:first-child) {
+      border-left: 1px solid $WBg;
+
+      table {
+        tr {
+          &::after {
+            left: 0;
+            width: calc(100%);
+          }
+        }
+      }
+    }
+
+    table {
+      border-radius: 0;
+
+      thead {
+        tr {
+          &:first-child {
+            th {
+              text-align: start;
+            }
+          }
+
+          &:has(.table__subtitle) {
+            border-bottom: 1px solid #f2f2f2;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          &:has(.table__subtitle) {
+            td {
+              padding: 0;
+              &:last-child {
+                background-color: $WWhite;
+              }
+              .dropdown {
+                &__title {
+                  padding: 23px 28px;
+                  justify-content: space-between;
+                }
+              }
+
+            }
+          }
+        }
+      }
+    }
+
+    &-container {
+      display: flex;
+      white-space: nowrap;
+      // column-gap: 20px;
+      overflow-x: auto;
+      border-radius: 12px;
+
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: $WWhite;
+        border-radius: 0px 0px 12px 12px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $Accent60;
+        border-radius: 40px;
+        border: 4px solid $WWhite;
+      }
+    }
+
+    &-title {
+      padding-left: 10px;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__main-table {
+    margin-bottom: 20px;
+
+    table {
+      td {
+        &:not(:last-child) {
+          background-color: $WWhite;
+        }
+        padding: 0;
+        &:has(.btn__remove) {
+          padding: 0;
+          height: 100%;
+          vertical-align: baseline;
+        }
+
+        .dropdown {
+          &__title {
+            padding: 23px 28px;
+            justify-content: space-between;
+          }
+        }
+      }
+
+      .btn__remove {
+        width: 100%;
+        height: 100%;
+        background: none;
+        padding: 23px 16px;
+      }
+    }
+  }
+
+  &__title {
+    padding-left: 10px;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+  &__caption {
+    padding-left: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+}
+
+// td {
+//   padding: 10px;
+// }

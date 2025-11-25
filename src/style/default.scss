@@ -1,0 +1,113 @@
+* {
+  font-family: $fontFamily;
+  font-size: 16px;
+  line-height: 100%;
+  color: $BBlack;
+}
+
+body {
+  background-color: $WBg;
+}
+
+h1 {
+  font-family: $fontFamilyProstoOne;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 100%;
+  color: $BSubT;
+}
+
+.h1 {
+  font-family: $fontFamilyProstoOne;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 100%;
+  color: $BSubT;
+}
+
+.h2 {
+  font-family: $fontFamilyProstoOne;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+  color: $BSubT;
+}
+
+h2 {
+  font-family: $fontFamilyProstoOne;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+  color: $BSubT;
+}
+
+.title {
+  margin-bottom: 24px;
+}
+
+.description {
+  color: $BSupport;
+  line-height: 110%;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1150px;
+  padding: 0px 20px;
+  height: 100%;
+}
+
+.open-list {
+  cursor: pointer;
+  position: relative;
+}
+
+.list {
+  position: absolute;
+  z-index: 11;
+  min-width: 200px;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  display: none;
+  background-color: $WWhite;
+  flex-direction: column;
+  &--active {
+    display: flex;
+  }
+}
+
+.list-item {
+  background-color: $WWhite;
+  padding: 5px;
+  margin-top: 0;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: $BReserve;
+    }
+  }
+}
+
+.dropdown {
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-height: 300px;
+
+    li {
+      cursor: pointer;
+      padding: 10px 10px;
+    }
+  }
+
+  &__item {
+    &-info {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+}
+
+.header-page {
+  margin-bottom: 32px;
+}

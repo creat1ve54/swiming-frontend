@@ -1,0 +1,45 @@
+.header {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px 40px 0px;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: 370px;
+
+    font-size: 18px;
+    line-height: 100%;
+
+    svg {
+      flex: 0 0 auto;
+    }
+  }
+
+  &__navigation {
+    display: flex;
+    padding: 8px;
+    border: 2px solid $Accent80;
+    border-radius: 100px;
+  }
+
+  &__link {
+    display: block;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 100%;
+    text-decoration: none;
+    color: $Accent80;
+    padding: 8px 24px;
+    border-radius: 100px;
+
+    &.active {
+      background-color: $Accent80;
+      color: $WWhite;
+    }
+  }
+}

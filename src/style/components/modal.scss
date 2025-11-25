@@ -1,0 +1,42 @@
+.modal {
+  display: none;
+  &--active {
+    display: block;
+  }
+
+  &__bg-close {
+    // cursor: pointer;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $BReserve;
+    opacity: 0.8;
+  }
+
+  &__close {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 500px;
+    min-height: 200px;
+    max-height: 500px;
+    padding: 50px;
+    border-radius: 20px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    background-color: $BReserve;
+  }
+}

@@ -1,0 +1,19 @@
+.mandatory-program {
+  // ul {
+  //   margin: 0;
+  //   padding: 0;
+  //   list-style: none;
+  //   margin-bottom: 20px;
+  // }
+
+  // li {
+  //   cursor: pointer;
+  //   margin-top: 10px;
+  // }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}

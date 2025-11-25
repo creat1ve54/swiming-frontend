@@ -1,0 +1,25 @@
+.result-documents {
+  &__btns {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 9px;
+      border-radius: 12px;
+      width: 100%;
+      background-color: $Accent20;
+      color: $Accent80;
+      font-weight: 400;
+      font-size: 18px;
+      font-family: $fontFamily;
+    }
+  }
+
+  
+}

@@ -1,0 +1,25 @@
+.references {
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+    &-link {
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      text-decoration: none;
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          color: $BReserve;
+          transition: all 0.3s ease-in-out;
+        }
+      }
+    }
+  }
+
+  .card-info {
+    &__list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}

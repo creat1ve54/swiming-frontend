@@ -1,0 +1,10 @@
+.main {
+  &__title {
+    margin-bottom: 24px;
+  }
+
+  &__description {
+    color: $BSupport;
+    line-height: 110%;
+  }
+}
