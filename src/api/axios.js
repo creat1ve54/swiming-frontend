@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const instance = axios.create({
-  baseURL: "http://212.67.9.16/:8000/api",
+  baseURL: "http://212.67.9.16:8000/api",
 });
 
 export const sportsmansAPI = {
@@ -54,7 +54,7 @@ export const elementsOfTechnicalProgramsAPI = {
 
 export const elementsProgramAPI = {
   getElementProgram(elements) {
-    return instance.get("/element-program", {params: elements});
+    return instance.get("/element-program", { params: elements });
   },
   // createTeams(team) {
   //   return instance.post("/teams", { team });
@@ -221,13 +221,17 @@ export const mandatoryAnyProgramRefereeApi = {
     return instance.get("/list-any-program-referee");
   },
   createReferee(mainAnyProgramBrigadeId) {
-    return instance.post("/list-any-program-referee", { mainAnyProgramBrigadeId });
+    return instance.post("/list-any-program-referee", {
+      mainAnyProgramBrigadeId,
+    });
   },
   updatePost(postInfo) {
     return instance.put("/list-any-program-referee/update-post", { postInfo });
   },
   updateReferee(refereeInfo) {
-    return instance.put("/list-any-program-referee/update-referee", { refereeInfo });
+    return instance.put("/list-any-program-referee/update-referee", {
+      refereeInfo,
+    });
   },
   deleteReferee(id) {
     return instance.delete(`/list-any-program-referee/${id}`, { id });
@@ -321,7 +325,7 @@ export const ratingsAPI = {
 
 export const ratingsAnyProgramAPI = {
   getRatings(ratings) {
-    return instance.get(`/ratings-any-program`, {params: ratings});
+    return instance.get(`/ratings-any-program`, { params: ratings });
   },
   saveActiveRatings(data) {
     return instance.put(`/ratings-any-program`, { data });
@@ -340,9 +344,8 @@ export const ratingsAnyProgramAPI = {
   },
   saveActiveRatingsElementImpression(data) {
     return instance.put(`/ratings-any-program/impression/element`, { data });
-  }
+  },
 };
-
 
 export const anyTeamProgramAPI = {
   getAnyTeamProgram(anyTeamProgramObject) {
@@ -368,10 +371,14 @@ export const anyTeamProgramAPI = {
     return instance.put("/any-team-program/sportsman", { anyTeamProgram });
   },
   putAnyTeamProgramSportsmanOutOfCompetition(anyTeamProgram) {
-    return instance.put("/any-team-program//sportsman/out-of-competition", { anyTeamProgram });
+    return instance.put("/any-team-program//sportsman/out-of-competition", {
+      anyTeamProgram,
+    });
   },
   putAnyTeamProgramOutOfCompetition(anyTeamProgram) {
-    return instance.put("/any-team-program/out-of-competition", { anyTeamProgram });
+    return instance.put("/any-team-program/out-of-competition", {
+      anyTeamProgram,
+    });
   },
   deleteAnyTeamProgramSportsman(sportsman) {
     return instance.delete(`/any-team-program/sportsman/${sportsman}`, {
