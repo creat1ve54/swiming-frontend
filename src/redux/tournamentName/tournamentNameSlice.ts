@@ -3,8 +3,8 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
   tournament: {
-    tournamentName: "КРАЕВЫЕ СОРЕВНОВАНИЯ 'НОВОЕ ПОКОЛЕНИЕ' ПАМЯТИ ЗВЯГИНЦЕВЫХ ТАТЬЯНЫ МИХАЙЛОВНЫ И НИКОЛАЯ НИКОЛАЕВИЧА",
-    dateAndPlaceOfRealization: "1-5 октября 2025 г., Краснодарский край, г. Краснодар",
+    tournamentName: "Соревнования муниципального образования город Краснодар по синхронному плаванию «Классификационный турнир»",
+    dateAndPlaceOfRealization: "28-30 ноября 2025 г., Краснодарский край, г. Краснодар",
   },
 };
 
