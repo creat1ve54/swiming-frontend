@@ -442,7 +442,7 @@ const ComponentToPrintDocumentAnyProgram = ({
                         (sportsman, sportsmanIdx) => (
                           <div key={sportsmanIdx  } style={{ display: "flex" }}>
                             <span style={{ width: "20px" }}>
-                              {item.anyTeamProgram.outOfCompetitions[
+                              {item.anyTeamProgram.reserve[
                                 sportsmanIdx
                               ] && "R"}
                             </span>{" "}

@@ -156,7 +156,7 @@ const StartNumbersAnyProgram = ({
                       {item.anyTeamProgram.sportsmansArray.map(
                         (sportsman, sportsmanIdx) => (
                           <div key={sportsmanIdx} style={{textAlign: 'left'}}>
-                            {sportsman?.surnameAndFirstname}{item.anyTeamProgram.outOfCompetitions[sportsmanIdx] && '(R)'}
+                            {sportsman?.surnameAndFirstname}{item.anyTeamProgram.reserve[sportsmanIdx] && '(R)'}
                           </div>
                         )
                       )}

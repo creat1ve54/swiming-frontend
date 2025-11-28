@@ -407,13 +407,13 @@ const RatingsAnyProgaram = () => {
                       </td>
                       <td>
                         <div className="ratings__checkboxs">
-                          {item.anyTeamProgram.outOfCompetitions.map(
-                            (outOfCompetition, index) => (
+                          {item.anyTeamProgram.reserve.map(
+                            (reserve, index) => (
                               <div key={index} className="ratings__checkbox">
                                 <label className="custom-checkbox">
                                   <input
                                     type="checkbox"
-                                    checked={outOfCompetition}
+                                    checked={reserve}
                                     disabled={true}
                                   ></input>
                                 </label>
