@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export const instance = axios.create({
-  baseURL: "http://localhost:8000/api",
-  // baseURL: "http://212.67.9.16/:8000/api",
+  // baseURL: "http://localhost:8000/api",
+  baseURL: "http://155.212.147.154:8000/api",
 });
 
 export const sportsmansAPI = {
