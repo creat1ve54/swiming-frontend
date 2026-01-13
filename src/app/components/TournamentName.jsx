@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useAppSelector } from "../../redux/hooks";
-import { useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   changeTournamentDate,
   changeTournamentName,
+  tournamentNamePutThunk,
 } from "../../redux/tournamentName/tournamentNameSlice";
 import Input from "../UI/Input";
+import { useDebounced } from "../../hooks/useDebounced";
 
 const TournamentName = () => {
-  const dispatch = useDispatch();
-  const { tournamentName } = useAppSelector(
-    (state) => state.tournamentNameSlice.tournament
-  );
-  const { dateAndPlaceOfRealization } = useAppSelector(
-    (state) => state.tournamentNameSlice.tournament
-  );
+  const dispatch = useAppDispatch();
+  const { tournament } = useAppSelector((state) => state.tournamentNameSlice);
 
   const [openTournamentName, setOpenTournamentName] = useState(true);
   const [openDateAndPlaceOfRealization, setOpenDateAndPlaceOfRealization] =
@@ -28,8 +24,17 @@ const TournamentName = () => {
     setOpenTournamentName(!openTournamentName);
   };
 
+  const changeName = useDebounced((name) => {
+    dispatch(tournamentNamePutThunk(tournament));
+  }, 500);
+
+  const changeDate = useDebounced((date) => {
+    dispatch(tournamentNamePutThunk(tournament));
+  }, 500);
+
   const onChangeTournament = (e) => {
     dispatch(changeTournamentName(e.target.value));
+    changeName(e.target.value);
   };
 
   const onKeyDownDateAndPlace = (e) => {
@@ -43,8 +48,9 @@ const TournamentName = () => {
 
   const onChangeDateAndPlace = (e) => {
     dispatch(changeTournamentDate(e.target.value));
+    changeDate(e.target.value);
   };
-
+  
   return (
     <div className="tournament-name">
       <div className="tournament-name__container">
@@ -56,9 +62,9 @@ const TournamentName = () => {
               setOpenTournamentName(!openTournamentName);
             }}
           >
-            {tournamentName == ""
+            {tournament.tournamentName == ""
               ? "Введите название соревнований"
-              : tournamentName}
+              : tournament.tournamentName}
           </span>
         ) : (
           <Input
@@ -67,12 +73,12 @@ const TournamentName = () => {
             onKeyDown={onKeyDownTournament}
             autoFocus={true}
             onBlur={onBlurTournament}
-            value={tournamentName}
+            value={tournament.tournamentName}
           />
         )}
       </div>
       <div className="tournament-name__container">
-        <div className="tournament-name__title">Дата и место проведения</div>
+        <div className="tournament-name__title">Дата проведения</div>
         {openDateAndPlaceOfRealization ? (
           <span
             className="tournament-name__text"
@@ -80,9 +86,9 @@ const TournamentName = () => {
               setOpenDateAndPlaceOfRealization(!openDateAndPlaceOfRealization);
             }}
           >
-            {dateAndPlaceOfRealization == ""
-              ? "Введите дату и место проведения"
-              : dateAndPlaceOfRealization}
+            {tournament.dateAndPlaceOfRealization == ""
+              ? "Введите дату"
+              : tournament.dateAndPlaceOfRealization}
           </span>
         ) : (
           <Input
@@ -91,7 +97,7 @@ const TournamentName = () => {
             onKeyDown={onKeyDownDateAndPlace}
             autoFocus={true}
             onBlur={onBlurDateAndPlace}
-            value={dateAndPlaceOfRealization}
+            value={tournament.dateAndPlaceOfRealization}
           />
         )}
       </div>
@@ -99,4 +105,4 @@ const TournamentName = () => {
   );
 };
 
-export default TournamentName;
+export default React.memo(TournamentName);

@@ -114,9 +114,9 @@ const ResutAnyProgramDocuments = () => {
                 <button
                   onClick={() => {
                     setShowResult(!showResult);
-                    setTimeout(() => {
-                      window.print();
-                    }, 500);
+                    // setTimeout(() => {
+                    //   window.print();
+                    // }, 500);
                   }}
                 >
                   Протоколы (список с результатами)

@@ -81,6 +81,9 @@ const ComponentToPrintDocumentResultAnyProgram = ({
     dispatch(ratingsSlicAnyProgrameGetThunk({ groupId, disciplineId }));
     // console.log(nameId);
 
+    console.log(groupId, disciplineId);
+    
+
     if (groupId != 1) {
       dispatch(ratingsSliceGetThunk(groupId == 2 ? 1 : 2));
     }

@@ -59,7 +59,7 @@ const Programms = () => {
             </NavLink>
             <NavLink to={"juniors"} className="card-info__item">
               <div className="card-info__item-header">
-                <h2 className="card-info__item-title">ЮНИОРЫ</h2>
+                <h2 className="card-info__item-title">Техническая</h2>
                 <div className="card-info__item-icon">
                   <Svg
                     name={"arrowRight"}
@@ -70,9 +70,7 @@ const Programms = () => {
                 </div>
               </div>
               <div className="card-info__item-text">
-                Состоит из двух частей: технической (обязательные элементы), и
-                произвольной, где демонстрируют креативность и сложность
-                постановки.
+                Техническая (обязательные элементы)
               </div>
             </NavLink>
           </div>

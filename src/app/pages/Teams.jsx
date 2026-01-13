@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   teamsChange,
   teamsSliceThunk,
@@ -49,7 +49,7 @@ import { useDebounced } from "../../hooks/useDebounced";
 const Teams = () => {
   const [show, setShow] = useState(false);
   const [active, setActive] = useState(0);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const { teams } = useAppSelector((state) => state.teamsSlice);
   const { sportsmans, isLoading } = useAppSelector((state) => state.teamsSlice);

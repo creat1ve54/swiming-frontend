@@ -389,3 +389,13 @@ export const anyTeamProgramAPI = {
     return instance.delete(`/any-team-program/${id}`, { id });
   },
 };
+
+
+export const tournamentNameAPI = {
+  getTournamentName() {
+    return instance.get("/tournament");
+  },
+  putTournamentName(tournament) {
+    return instance.put("/tournament", { tournament });
+  },
+};

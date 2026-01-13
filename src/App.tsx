@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AppRoutes from "./routes/Routes";
+import { tournamentNameThunk } from "./redux/tournamentName/tournamentNameSlice";
+import { useAppDispatch } from "./redux/hooks";
 
-function App() {
+const App = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(tournamentNameThunk());
+  }, []);
+
+
   return (
     <div className="app">
       {/* <Header /> */}
@@ -11,6 +20,6 @@ function App() {
       {/* <Footer /> */}
     </div>
   );
-}
+};
 
 export default App;
