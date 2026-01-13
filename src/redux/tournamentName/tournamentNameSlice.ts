@@ -21,7 +21,7 @@ export const tournamentNameThunk = createAsyncThunk(
 
 export const tournamentNamePutThunk = createAsyncThunk(
   "tournamentName/tournamentNamePutThunk",
-  async (tournament) => {
+  async (tournament) => {    
     const tournamentResp = (
       await tournamentNameAPI.putTournamentName(tournament)
     ).data;

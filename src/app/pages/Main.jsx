@@ -9,8 +9,6 @@ import Modal from "../components/Modal";
 const Main = () => {
   const { tournament } = useAppSelector((state) => state.tournamentNameSlice);
 
-  console.log(tournament);
-
   const [show, setShow] = useState(false);
   const onModal = () => {
     setShow(!show);
