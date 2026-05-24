@@ -102,21 +102,21 @@ const ResutAnyProgramDocuments = () => {
                   Протоколы с оценками
                 </button>
                 <button
-                // onClick={() => {
-                //   setShowResult(!showResult);
-                //   setTimeout(() => {
-                //     window.print();
-                //   }, 500);
-                // }}
+                onClick={() => {
+                  setShowResult(!showResult);
+                  setTimeout(() => {
+                    window.print();
+                  }, 500);
+                }}
                 >
                   Протоколы c оценками укороченный
                 </button>
                 <button
                   onClick={() => {
                     setShowResult(!showResult);
-                    // setTimeout(() => {
-                    //   window.print();
-                    // }, 500);
+                    setTimeout(() => {
+                      window.print();
+                    }, 500);
                   }}
                 >
                   Протоколы (список с результатами)

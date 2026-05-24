@@ -25,7 +25,7 @@ const TheDraw = () => {
 
   const dispatch = useDispatch();
   const { draws, isLoading, isLoadingActive } = useAppSelector(
-    (state) => state.drawSlice
+    (state) => state.drawSlice,
   );
 
   console.log(isLoadingActive);
@@ -39,7 +39,7 @@ const TheDraw = () => {
   const draw = async () => {
     let drawArray = Array.from(
       { length: draws.sportsmansArray.length },
-      (_, index) => index + 1
+      (_, index) => index + 1,
     );
     let drawArrayNew = [];
 
@@ -52,7 +52,7 @@ const TheDraw = () => {
     let drawOneNew = drawArrayNew;
     drawArray = Array.from(
       { length: draws.sportsmansArray.length },
-      (_, index) => index + 1
+      (_, index) => index + 1,
     );
     drawArrayNew = [];
 
@@ -65,7 +65,7 @@ const TheDraw = () => {
     let drawTwoNew = drawArrayNew;
     drawArray = Array.from(
       { length: draws.sportsmansArray.length },
-      (_, index) => index + 1
+      (_, index) => index + 1,
     );
     drawArrayNew = [];
 
@@ -122,6 +122,18 @@ const TheDraw = () => {
       drawValueChange: Number(e),
     };
     dispatch(changeManuallyDraw(draw));
+  };
+
+  const changeManualDrawBlur = (e, num, index) => {
+    const draw = {
+      nameId: nameId,
+      drawChange: num,
+      drawPositionChange: index,
+      drawValueChange: Number(e),
+    };
+
+    console.log(draw);
+    
     dispatch(changeManuallyDrawThunk(draw)).then((data) => {
       if (data.payload.message) {
         alert(data.payload.message);
@@ -132,7 +144,7 @@ const TheDraw = () => {
   useEffect(() => {
     let changeLocation = () => {
       alert("Вы не выбрали жеребьевку!");
-    };    
+    };
 
     dispatch(drawSliceGetThunk({ nameId })).then((data) => {
       if (data.payload.sportsmansArray.length === 0) {
@@ -179,7 +191,7 @@ const TheDraw = () => {
                   <tr className="the-draw__thead-main">
                     <th
                       onClick={() => {
-                        if(!isLoadingActive) {
+                        if (!isLoadingActive) {
                           activeDrawFunc(1);
                         }
                       }}
@@ -205,7 +217,7 @@ const TheDraw = () => {
                     </th>
                     <th
                       onClick={() => {
-                        if(!isLoadingActive) {
+                        if (!isLoadingActive) {
                           activeDrawFunc(2);
                         }
                       }}
@@ -231,7 +243,7 @@ const TheDraw = () => {
                     </th>
                     <th
                       onClick={() => {
-                        if(!isLoadingActive) {
+                        if (!isLoadingActive) {
                           activeDrawFunc(3);
                         }
                       }}
@@ -280,6 +292,13 @@ const TheDraw = () => {
 
                               changeManuallyDrawFunc(value, "drawOne", index);
                             }}
+                            onBlur={(e) => {
+                              let value =
+                                e.target.value >= draws?.sportsmansArray.length
+                                  ? draws?.sportsmansArray.length
+                                  : e.target.value;
+                              changeManualDrawBlur(value, "drawOne", index);
+                            }}
                             type="number"
                             value={
                               draws.drawOne[index] !== 0
@@ -306,6 +325,13 @@ const TheDraw = () => {
                                   ? draws?.sportsmansArray.length
                                   : e.target.value;
                               changeManuallyDrawFunc(value, "drawTwo", index);
+                            }}
+                            onBlur={(e) => {
+                              let value =
+                                e.target.value >= draws?.sportsmansArray.length
+                                  ? draws?.sportsmansArray.length
+                                  : e.target.value;
+                              changeManualDrawBlur(value, "drawTwo", index);
                             }}
                             type="number"
                             value={
@@ -334,6 +360,13 @@ const TheDraw = () => {
                                   : e.target.value;
 
                               changeManuallyDrawFunc(value, "drawThree", index);
+                            }}
+                            onBlur={(e) => {
+                              let value =
+                                e.target.value >= draws?.sportsmansArray.length
+                                  ? draws?.sportsmansArray.length
+                                  : e.target.value;
+                              changeManualDrawBlur(value, "drawThree", index);
                             }}
                             type="number"
                             value={
@@ -381,13 +414,14 @@ const TheDraw = () => {
                     color={"#DD554B"}
                   />
                 </button>
-                {/* <button
-            onClick={() => {
-              setManually(!manually);
-            }}
-          >
-            Ввести в ручную
-          </button> */}
+                <button
+                  className="the-draw__btn the-draw__btn-spend"
+                  onClick={() => {
+                    setManually(!manually);
+                  }}
+                >
+                  Ввести в ручную
+                </button>
                 {/* <button
             onClick={() => {
               activeDrawFunc(activeDraw);

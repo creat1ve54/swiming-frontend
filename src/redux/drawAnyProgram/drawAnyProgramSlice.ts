@@ -23,16 +23,15 @@ export const drawAnyProgramSliceSaveThunk = createAsyncThunk(
   async (draw) => {
     const drawSave = (await drawAnyProgramApi.saveDraw(draw)).data;
     return drawSave;
-  }
+  },
 );
 
 export const drawAnyProgramSliceGetThunk = createAsyncThunk(
   "drawAnyProgramSlice/drawSliceGetThunk",
   async (drawOption) => {
-
     const draw = (await drawAnyProgramApi.getDraw(drawOption)).data;
     return draw;
-  }
+  },
 );
 
 export const activeDrawAnyProgramThunk = createAsyncThunk(
@@ -40,7 +39,7 @@ export const activeDrawAnyProgramThunk = createAsyncThunk(
   async (draw) => {
     const drawData = (await drawAnyProgramApi.activeDraw(draw)).data;
     return drawData;
-  }
+  },
 );
 
 export const resetDrawAnyProgramThunk = createAsyncThunk(
@@ -48,7 +47,7 @@ export const resetDrawAnyProgramThunk = createAsyncThunk(
   async (draw) => {
     const drawData = (await drawAnyProgramApi.resetDraw(draw)).data;
     return drawData;
-  }
+  },
 );
 
 export const changeManuallyDrawAnyProgramThunk = createAsyncThunk(
@@ -56,7 +55,7 @@ export const changeManuallyDrawAnyProgramThunk = createAsyncThunk(
   async (draw) => {
     const drawData = (await drawAnyProgramApi.changeManuallyDraw(draw)).data;
     return drawData;
-  }
+  },
 );
 
 const initialState: DrawsAnyProgramInterface = {
@@ -83,13 +82,17 @@ export const drawAnyProgramSlice = createSlice({
         drawChange: "drawOne" | "drawTwo" | "drawThree";
         drawPositionChange: number;
         drawValueChange: number;
-      }>
+      }>,
     ) {
-      state.draws[`${action.payload.drawChange}`].forEach((el, index) => {
-        if (index === action.payload.drawPositionChange) {
-          el = action.payload.drawValueChange;
-        }
-      });
+      // state.draws[`${action.payload.drawChange}`].forEach((el, index) => {
+      //   if (index === action.payload.drawPositionChange) {
+      //     el = action.payload.drawValueChange;
+      //   }
+      // });
+
+      state.draws[action.payload.drawChange][
+        action.payload.drawPositionChange
+      ] = action.payload.drawValueChange;
     },
   },
   extraReducers: (builder) => {
@@ -121,18 +124,24 @@ export const drawAnyProgramSlice = createSlice({
       state.isLoading = false;
       state.draws = action.payload;
     });
-    builder.addCase(changeManuallyDrawAnyProgramThunk.pending, (state, action) => {
-      // state.isLoading = true;
-    });
-    builder.addCase(changeManuallyDrawAnyProgramThunk.fulfilled, (state, action) => {
-      // state.isLoading = false;
-      state.draws = action.payload.draw;
-      if (action.payload.message) {
-        state.error = action.payload?.message;
-      } else {
-        state.error = "";
-      }
-    });
+    builder.addCase(
+      changeManuallyDrawAnyProgramThunk.pending,
+      (state, action) => {
+        // state.isLoading = true;
+      },
+    );
+    builder.addCase(
+      changeManuallyDrawAnyProgramThunk.fulfilled,
+      (state, action) => {
+        // state.isLoading = false;
+        state.draws = action.payload.draw;
+        if (action.payload.message) {
+          state.error = action.payload?.message;
+        } else {
+          state.error = "";
+        }
+      },
+    );
   },
 });
 

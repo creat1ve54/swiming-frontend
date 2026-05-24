@@ -25,11 +25,11 @@ const TournamentName = () => {
   };
 
   const changeName = useDebounced((name) => {
-    dispatch(tournamentNamePutThunk({...tournament, tournamentName: name }));
+    dispatch(tournamentNamePutThunk(tournament));
   }, 500);
 
   const changeDate = useDebounced((date) => {
-    dispatch(tournamentNamePutThunk({...tournament, dateAndPlaceOfRealization: date }));
+    dispatch(tournamentNamePutThunk(tournament));
   }, 500);
 
   const onChangeTournament = (e) => {

@@ -23,7 +23,7 @@ export const drawSliceSaveThunk = createAsyncThunk(
   async (draw) => {
     const drawSave = (await drawApi.saveDraw(draw)).data;
     return drawSave;
-  }
+  },
 );
 
 export const drawSliceGetThunk = createAsyncThunk(
@@ -31,7 +31,7 @@ export const drawSliceGetThunk = createAsyncThunk(
   async (drawOption) => {
     const draw = (await drawApi.getDraw(drawOption)).data;
     return draw;
-  }
+  },
 );
 
 export const activeDrawThunk = createAsyncThunk(
@@ -39,7 +39,7 @@ export const activeDrawThunk = createAsyncThunk(
   async (draw) => {
     const drawData = (await drawApi.activeDraw(draw)).data;
     return drawData;
-  }
+  },
 );
 
 export const resetDrawThunk = createAsyncThunk(
@@ -47,7 +47,7 @@ export const resetDrawThunk = createAsyncThunk(
   async (draw) => {
     const drawData = (await drawApi.resetDraw(draw)).data;
     return drawData;
-  }
+  },
 );
 
 export const changeManuallyDrawThunk = createAsyncThunk(
@@ -55,7 +55,7 @@ export const changeManuallyDrawThunk = createAsyncThunk(
   async (draw) => {
     const drawData = (await drawApi.changeManuallyDraw(draw)).data;
     return drawData;
-  }
+  },
 );
 
 const initialState: DrawsInterface = {
@@ -82,13 +82,11 @@ export const drawSlice = createSlice({
         drawChange: "drawOne" | "drawTwo" | "drawThree";
         drawPositionChange: number;
         drawValueChange: number;
-      }>
+      }>,
     ) {
-      state.draws[`${action.payload.drawChange}`].forEach((el, index) => {
-        if (index === action.payload.drawPositionChange) {
-          el = action.payload.drawValueChange;
-        }
-      });
+      state.draws[action.payload.drawChange][
+        action.payload.drawPositionChange
+      ] = action.payload.drawValueChange;
     },
   },
   extraReducers: (builder) => {

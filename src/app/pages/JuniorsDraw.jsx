@@ -1,9 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import Header from "../components/Header";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-
-import { useLocation } from "react-router";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   activeDrawAnyProgramThunk,
   changeManuallyDrawAnyProgram,
@@ -12,19 +8,17 @@ import {
   drawAnyProgramSliceSaveThunk,
   resetDrawAnyProgramThunk,
 } from "../../redux/drawAnyProgram/drawAnyProgramSlice";
-import HeaderComponent from "../components/HeaderComponent";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import Svg from "../../assets/svg/Svg";
+import Header from "../components/Header";
+import HeaderComponent from "../components/HeaderComponent";
 
-const TheDrawAnyProgram = () => {
+const JuniorsDraw = () => {
   let data = useLocation();
   const navigate = useNavigate();
   const { nameId, groupId, disciplineId, categories } = data.state;
 
   console.log({ nameId, groupId, disciplineId });
-
-  // nameId: 'Юниоры',
-  // groupId: 3,
-  // disciplineId: 4,
 
   const [manually, setManually] = useState(true);
   const [test, setTest] = useState(true);
@@ -34,7 +28,6 @@ const TheDrawAnyProgram = () => {
     (state) => state.drawAnyProgramSlice,
   );
 
-  const originalValuesRef = useRef({});
   console.log(draws);
 
   const getRandomNumber = (min, max) => {
@@ -189,22 +182,6 @@ const TheDrawAnyProgram = () => {
       drawValueChange: Number(e),
     };
     dispatch(changeManuallyDrawAnyProgram(draw));
-    // dispatch(changeManuallyDrawAnyProgramThunk(draw)).then((data) => {
-    //   if (data.payload.message) {
-    //     alert(data.payload.message);
-    //   }
-    // });
-  };
-
-  const changeManualDrawBlur = (e, num, index) => {
-    const draw = {
-      nameId: nameId,
-      groupId: groupId,
-      disciplineId: disciplineId,
-      drawChange: num,
-      drawPositionChange: index,
-      drawValueChange: Number(e),
-    };
     dispatch(changeManuallyDrawAnyProgramThunk(draw)).then((data) => {
       if (data.payload.message) {
         alert(data.payload.message);
@@ -220,8 +197,6 @@ const TheDrawAnyProgram = () => {
     dispatch(
       drawAnyProgramSliceGetThunk({ nameId, groupId, disciplineId }),
     ).then((data) => {
-      console.log(data);
-
       if (data.payload.teamsArray && data.payload.teamsArray.length === 0) {
         alert("Команд нет");
         navigate(-1);
@@ -266,7 +241,7 @@ const TheDrawAnyProgram = () => {
           <div className="container">
             <HeaderComponent
               title={categories}
-              link="/programms/arbitrary-program/the-draw-any-program"
+              link="/programms/juniors/the-draw"
             />
             <table>
               <thead>
@@ -377,39 +352,8 @@ const TheDrawAnyProgram = () => {
                                 : e.target.value;
                             changeManuallyDrawFunc(value, "drawOne", index);
                           }}
-                          onFocus={() => {
-                            const key = `drawOne-${index}`;
-                            originalValuesRef.current[key] =
-                              draws.drawOne[index];
-                          }}
-                          onBlur={(e) => {
-                            const rawValue = e.target.value;
-                            const newValue =
-                              rawValue === "" ? 0 : Number(rawValue);
-                            const cappedValue = Math.min(
-                              newValue,
-                              draws?.teamsArray.length || 0,
-                            );
-
-                            const key = `drawOne-${index}`;
-                            const originalValue =
-                              originalValuesRef.current[key];
-
-                            if (originalValue !== cappedValue) {
-                              changeManualDrawBlur(
-                                cappedValue,
-                                "drawOne",
-                                index,
-                              );
-                            }
-                            delete originalValuesRef.current[key];
-                          }}
                           type="number"
-                          value={
-                            draws.drawOne[index] !== 0
-                              ? draws.drawOne[index]
-                              : ""
-                          }
+                          value={draws.drawOne[index] ?? ""}
                           disabled={manually}
                           min={1}
                           max={draws?.teamsArray.length}
@@ -431,39 +375,8 @@ const TheDrawAnyProgram = () => {
                                 : e.target.value;
                             changeManuallyDrawFunc(value, "drawTwo", index);
                           }}
-                          onFocus={() => {
-                            const key = `drawTwo-${index}`;
-                            originalValuesRef.current[key] =
-                              draws.drawTwo[index];
-                          }}
-                          onBlur={(e) => {
-                            const rawValue = e.target.value;
-                            const newValue =
-                              rawValue === "" ? 0 : Number(rawValue);
-                            const cappedValue = Math.min(
-                              newValue,
-                              draws?.teamsArray.length || 0,
-                            );
-
-                            const key = `drawTwo-${index}`;
-                            const originalValue =
-                              originalValuesRef.current[key];
-
-                            if (originalValue !== cappedValue) {
-                              changeManualDrawBlur(
-                                cappedValue,
-                                "drawTwo",
-                                index,
-                              );
-                            }
-                            delete originalValuesRef.current[key];
-                          }}
                           type="number"
-                          value={
-                            draws.drawTwo[index] !== 0
-                              ? draws.drawTwo[index]
-                              : ""
-                          }
+                          value={draws.drawTwo[index] ?? ""}
                           disabled={manually}
                           min={1}
                           max={draws?.teamsArray.length}
@@ -486,39 +399,8 @@ const TheDrawAnyProgram = () => {
 
                             changeManuallyDrawFunc(value, "drawThree", index);
                           }}
-                          onFocus={() => {
-                            const key = `drawThree-${index}`;
-                            originalValuesRef.current[key] =
-                              draws.drawThree[index];
-                          }}
-                          onBlur={(e) => {
-                            const rawValue = e.target.value;
-                            const newValue =
-                              rawValue === "" ? 0 : Number(rawValue);
-                            const cappedValue = Math.min(
-                              newValue,
-                              draws?.teamsArray.length || 0,
-                            );
-
-                            const key = `drawThree-${index}`;
-                            const originalValue =
-                              originalValuesRef.current[key];
-
-                            if (originalValue !== cappedValue) {
-                              changeManualDrawBlur(
-                                cappedValue,
-                                "drawThree",
-                                index,
-                              );
-                            }
-                            delete originalValuesRef.current[key];
-                          }}
                           type="number"
-                          value={
-                            draws.drawThree[index] !== 0
-                              ? draws.drawThree[index]
-                              : ""
-                          }
+                          value={draws.drawThree[index] ?? ""}
                           disabled={manually}
                           min={1}
                           max={draws?.teamsArray.length}
@@ -556,33 +438,6 @@ const TheDrawAnyProgram = () => {
                                 : e.target.value;
                             changeManuallyDrawFunc(value, "drawOne", index);
                           }}
-                          onFocus={() => {
-                            const key = `drawOne-${index}`;
-                            originalValuesRef.current[key] =
-                              draws.drawOne[index];
-                          }}
-                          onBlur={(e) => {
-                            const rawValue = e.target.value;
-                            const newValue =
-                              rawValue === "" ? 0 : Number(rawValue);
-                            const cappedValue = Math.min(
-                              newValue,
-                              draws?.teamsArray.length || 0,
-                            );
-
-                            const key = `drawOne-${index}`;
-                            const originalValue =
-                              originalValuesRef.current[key];
-
-                            if (originalValue !== cappedValue) {
-                              changeManualDrawBlur(
-                                cappedValue,
-                                "drawOne",
-                                index,
-                              );
-                            }
-                            delete originalValuesRef.current[key];
-                          }}
                           type="number"
                           value={
                             draws.drawOne[index] !== 0
@@ -609,33 +464,6 @@ const TheDrawAnyProgram = () => {
                                 ? draws?.sportsmansArray.length
                                 : e.target.value;
                             changeManuallyDrawFunc(value, "drawTwo", index);
-                          }}
-                          onFocus={() => {
-                            const key = `drawTwo-${index}`;
-                            originalValuesRef.current[key] =
-                              draws.drawTwo[index];
-                          }}
-                          onBlur={(e) => {
-                            const rawValue = e.target.value;
-                            const newValue =
-                              rawValue === "" ? 0 : Number(rawValue);
-                            const cappedValue = Math.min(
-                              newValue,
-                              draws?.teamsArray.length || 0,
-                            );
-
-                            const key = `drawTwo-${index}`;
-                            const originalValue =
-                              originalValuesRef.current[key];
-
-                            if (originalValue !== cappedValue) {
-                              changeManualDrawBlur(
-                                cappedValue,
-                                "drawTwo",
-                                index,
-                              );
-                            }
-                            delete originalValuesRef.current[key];
                           }}
                           type="number"
                           value={
@@ -664,33 +492,6 @@ const TheDrawAnyProgram = () => {
                                 : e.target.value;
 
                             changeManuallyDrawFunc(value, "drawThree", index);
-                          }}
-                          onFocus={() => {
-                            const key = `drawThree-${index}`;
-                            originalValuesRef.current[key] =
-                              draws.drawThree[index];
-                          }}
-                          onBlur={(e) => {
-                            const rawValue = e.target.value;
-                            const newValue =
-                              rawValue === "" ? 0 : Number(rawValue);
-                            const cappedValue = Math.min(
-                              newValue,
-                              draws?.teamsArray.length || 0,
-                            );
-
-                            const key = `drawThree-${index}`;
-                            const originalValue =
-                              originalValuesRef.current[key];
-
-                            if (originalValue !== cappedValue) {
-                              changeManualDrawBlur(
-                                cappedValue,
-                                "drawThree",
-                                index,
-                              );
-                            }
-                            delete originalValuesRef.current[key];
                           }}
                           type="number"
                           value={
@@ -735,14 +536,13 @@ const TheDrawAnyProgram = () => {
                 Обнулить жеребьевку
                 <Svg name={"remove"} width={24} height={24} color={"#DD554B"} />
               </button>
-              <button
-                className="the-draw__btn the-draw__btn-spend"
-                onClick={() => {
-                  setManually(!manually);
-                }}
-              >
-                Ввести в ручную
-              </button>
+              {/* <button
+              onClick={() => {
+                setManually(!manually);
+              }}
+            >
+              Ввести в ручную
+            </button> */}
               {/* <button
             onClick={() => {
               activeDrawFunc(activeDraw);
@@ -758,4 +558,4 @@ const TheDrawAnyProgram = () => {
   );
 };
 
-export default TheDrawAnyProgram;
+export default JuniorsDraw;

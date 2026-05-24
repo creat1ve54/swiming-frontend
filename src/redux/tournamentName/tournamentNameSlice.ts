@@ -21,7 +21,7 @@ export const tournamentNameThunk = createAsyncThunk(
 
 export const tournamentNamePutThunk = createAsyncThunk(
   "tournamentName/tournamentNamePutThunk",
-  async (tournament) => {    
+  async (tournament) => {
     const tournamentResp = (
       await tournamentNameAPI.putTournamentName(tournament)
     ).data;
@@ -34,6 +34,10 @@ export const tournamentNameSlice = createSlice({
   initialState,
   reducers: {
     changeTournamentName(state, action: PayloadAction<string>) {
+      console.log(1111);
+      console.log(action.payload);
+      
+      
       state.tournament.tournamentName = action.payload;
     },
     changeTournamentDate(state, action: PayloadAction<string>) {

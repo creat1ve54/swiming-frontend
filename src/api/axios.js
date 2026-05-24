@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export const instance = axios.create({
-  // baseURL: "http://localhost:8000/api",
-  baseURL: "http://155.212.147.154:8000/api",
+  baseURL: "http://localhost:8000/api",
+  // baseURL: "http://155.212.147.154:8000/api",
 });
 
 export const sportsmansAPI = {
@@ -36,8 +36,10 @@ export const teamsAPI = {
 };
 
 export const elementsOfTechnicalProgramsAPI = {
-  getElementsOfTechnicalPrograms(groupId) {
-    return instance.get("/elements-of-technical-programs", { params: groupId });
+  getElementsOfTechnicalPrograms({groupId, name}) {
+    return instance.get("/elements-of-technical-programs", {
+      params: { groupId, name },
+    });
   },
   // createTeams(team) {
   //   return instance.post("/teams", { team });
@@ -372,7 +374,7 @@ export const anyTeamProgramAPI = {
     return instance.put("/any-team-program/sportsman", { anyTeamProgram });
   },
   putAnyTeamProgramSportsmanOutOfCompetition(anyTeamProgram) {
-    return instance.put("/any-team-program//sportsman/out-of-competition", {
+    return instance.put("/any-team-program/sportsman/out-of-competition", {
       anyTeamProgram,
     });
   },
@@ -390,7 +392,6 @@ export const anyTeamProgramAPI = {
     return instance.delete(`/any-team-program/${id}`, { id });
   },
 };
-
 
 export const tournamentNameAPI = {
   getTournamentName() {

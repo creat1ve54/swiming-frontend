@@ -72,9 +72,9 @@ const initialState: ReferencesBtnsInterface = {
 
 export const elementsOfTechnicalProgramsThunk = createAsyncThunk(
   "referencesBtns/referencesBtnsThunk",
-  async (groupId) => {
+  async ({name, groupId}: any) => {
     const elementsOfTechnicalPrograms = (
-      await elementsOfTechnicalProgramsAPI.getElementsOfTechnicalPrograms(groupId)
+      await elementsOfTechnicalProgramsAPI.getElementsOfTechnicalPrograms({name: name, groupId: groupId})
     ).data;
     return elementsOfTechnicalPrograms;
   }

@@ -29,7 +29,7 @@ import {
 import HeaderComponent from "../components/HeaderComponent";
 import Svg from "../../assets/svg/Svg";
 
-const RatingsAnyProgaram = () => {
+const JuniorsRating = () => {
   const navigate = useNavigate();
   let data = useLocation();
   const { nameId, groupId, disciplineId, categories } = data.state;
@@ -42,7 +42,6 @@ const RatingsAnyProgaram = () => {
   } = useAppSelector((state) => state.ratingsAnyProgramSlice);
 
   // console.log(isLoading);
-  
 
   const [activeSportsmanNum, setActiveSportsmanNum] = useState(0);
   // const [activeSportsman, setActiveSportsman] = useState(null);
@@ -50,7 +49,7 @@ const RatingsAnyProgaram = () => {
   const [arrayBodyText, setArrayBodyText] = useState([]);
 
   const { elementsOfTechnicalPrograms } = useAppSelector(
-    (state) => state.referencesBtnsSlice
+    (state) => state.referencesBtnsSlice,
   );
 
   const saveRatingsElemet = (id, field, item) => {
@@ -64,7 +63,7 @@ const RatingsAnyProgaram = () => {
         },
         groupId: groupId,
         disciplineId: disciplineId,
-      })
+      }),
     ).then(() => {
       dispatch(ratingsSlicAnyProgrameGetThunk({ groupId, disciplineId })).then(
         (data) => {
@@ -76,12 +75,12 @@ const RatingsAnyProgaram = () => {
           } else {
             if (data.payload.length > 0) {
               const activeSportsman = data.payload.find(
-                (item) => item.drawsNumber == activeSportsmanNum
+                (item) => item.drawsNumber == activeSportsmanNum,
               );
               dispatch(
                 activeRatingsSportsmansChange({
                   activeSportsman: activeSportsman,
-                })
+                }),
               );
               setActiveSportsmanNum(activeSportsman.drawsNumber);
             } else {
@@ -90,7 +89,7 @@ const RatingsAnyProgaram = () => {
               return;
             }
           }
-        }
+        },
       );
     });
   };
@@ -106,7 +105,7 @@ const RatingsAnyProgaram = () => {
         },
         groupId: groupId,
         disciplineId: disciplineId,
-      })
+      }),
     );
   };
 
@@ -121,7 +120,7 @@ const RatingsAnyProgaram = () => {
         },
         groupId: groupId,
         disciplineId: disciplineId,
-      })
+      }),
     );
   };
 
@@ -136,7 +135,7 @@ const RatingsAnyProgaram = () => {
         },
         groupId: groupId,
         disciplineId: disciplineId,
-      })
+      }),
     );
   };
 
@@ -151,7 +150,7 @@ const RatingsAnyProgaram = () => {
         },
         groupId: groupId,
         disciplineId: disciplineId,
-      })
+      }),
     );
   };
 
@@ -166,7 +165,7 @@ const RatingsAnyProgaram = () => {
         },
         groupId: groupId,
         disciplineId: disciplineId,
-      })
+      }),
     );
   };
 
@@ -181,7 +180,7 @@ const RatingsAnyProgaram = () => {
         },
         groupId: groupId,
         disciplineId: disciplineId,
-      })
+      }),
     );
   };
 
@@ -196,7 +195,7 @@ const RatingsAnyProgaram = () => {
         },
         groupId: groupId,
         disciplineId: disciplineId,
-      })
+      }),
     ).then(() => {
       dispatch(ratingsSlicAnyProgrameGetThunk({ groupId, disciplineId })).then(
         (data) => {
@@ -209,12 +208,12 @@ const RatingsAnyProgaram = () => {
           } else {
             if (data.payload.length > 0) {
               const activeSportsman = data.payload.find(
-                (item) => item.drawsNumber == activeSportsmanNum
+                (item) => item.drawsNumber == activeSportsmanNum,
               );
               dispatch(
                 activeRatingsSportsmansChange({
                   activeSportsman: activeSportsman,
-                })
+                }),
               );
               setActiveSportsmanNum(activeSportsman.drawsNumber);
             } else {
@@ -223,7 +222,7 @@ const RatingsAnyProgaram = () => {
               return;
             }
           }
-        }
+        },
       );
     });
   };
@@ -270,14 +269,14 @@ const RatingsAnyProgaram = () => {
       dispatch(
         activeRatingsSportsmansChange({
           activeSportsman: ratingsSportsmansAnyProgram[activeSportsmanNum],
-        })
+        }),
       );
     } else {
       setActiveSportsmanNum(activeSportsmanNum - 1);
       dispatch(
         activeRatingsSportsmansChange({
           activeSportsman: ratingsSportsmansAnyProgram[activeSportsmanNum - 2],
-        })
+        }),
       );
     }
     dispatch(ratingsSlicAnyProgrameGetThunk({ groupId, disciplineId }));
@@ -310,7 +309,7 @@ const RatingsAnyProgaram = () => {
             dispatch(
               activeRatingsSportsmansChange({
                 activeSportsman: data.payload[0],
-              })
+              }),
             );
 
             setActiveSportsmanNum(data.payload[0].drawsNumber);
@@ -320,26 +319,28 @@ const RatingsAnyProgaram = () => {
             return;
           }
         }
-      }
+      },
     );
-    
-    dispatch(elementsOfTechnicalProgramsThunk({ groupId: groupId }));
+
+    dispatch(
+      elementsOfTechnicalProgramsThunk({ groupId: groupId, name: "Техника" }),
+    );
     dispatch(
       elementsProgramThunk({
         groupId: groupId,
         elementsOfTechnicalProgramId: disciplineId,
-      })
+        name: "Техника",
+      }),
     ).then((data) => {
       setArrayBodyText(data.payload);
     });
 
     return () => {
-      dispatch(resetRatingsSportsmans())
+      dispatch(resetRatingsSportsmans());
     };
   }, []);
 
   console.log(ratingsSportsmansAnyProgram);
-  
 
   if (activeRatingsSportsmansAnyProgram.id !== 0 && !changeSize) {
     checkSize();
@@ -359,7 +360,7 @@ const RatingsAnyProgaram = () => {
           <div className="container">
             <HeaderComponent
               title={categories}
-              link="/programms/arbitrary-program/ratings-any-program"
+              link="/programms/juniors/rating"
             />
             <div className="ratings__container">
               <table className="ratings__table">
@@ -379,13 +380,13 @@ const RatingsAnyProgaram = () => {
                         dispatch(
                           activeRatingsSportsmansChange({
                             activeSportsman: ratingsSportsmansAnyProgram[index],
-                          })
+                          }),
                         );
                         dispatch(
                           ratingsSlicAnyProgrameGetThunk({
                             groupId,
                             disciplineId,
-                          })
+                          }),
                         );
                       }}
                       className={
@@ -402,25 +403,23 @@ const RatingsAnyProgaram = () => {
                               <div key={index} className="ratings__sportsman">
                                 {sportsman?.surnameAndFirstname}
                               </div>
-                            )
+                            ),
                           )}
                         </div>
                       </td>
                       <td>
                         <div className="ratings__checkboxs">
-                          {item.anyTeamProgram.reserve.map(
-                            (reserve, index) => (
-                              <div key={index} className="ratings__checkbox">
-                                <label className="custom-checkbox">
-                                  <input
-                                    type="checkbox"
-                                    checked={reserve}
-                                    disabled={true}
-                                  ></input>
-                                </label>
-                              </div>
-                            )
-                          )}
+                          {item.anyTeamProgram.reserve.map((reserve, index) => (
+                            <div key={index} className="ratings__checkbox">
+                              <label className="custom-checkbox">
+                                <input
+                                  type="checkbox"
+                                  checked={reserve}
+                                  disabled={true}
+                                ></input>
+                              </label>
+                            </div>
+                          ))}
                         </div>
                       </td>
                     </tr>
@@ -549,7 +548,7 @@ const RatingsAnyProgaram = () => {
                           {activeRatingsSportsmansAnyProgram.MPScoreAnyProgramArray[0].scores.map(
                             (score, idx) => (
                               <th key={idx}>{idx + 1}</th>
-                            )
+                            ),
                           )}
                         </tr>
                       </thead>
@@ -568,7 +567,7 @@ const RatingsAnyProgaram = () => {
                                       saveRatingsElemet(
                                         item.id,
                                         idx,
-                                        itemElement
+                                        itemElement,
                                       );
                                     }}
                                     items={arrayBodyText}
@@ -586,7 +585,7 @@ const RatingsAnyProgaram = () => {
                                       saveRatingsElemet(
                                         item.id,
                                         idx,
-                                        itemElement
+                                        itemElement,
                                       );
                                     }}
                                     items={arrayBodyText}
@@ -609,7 +608,7 @@ const RatingsAnyProgaram = () => {
                                         idActive: activeSportsmanNum,
                                         // DD: idx,
                                         text: Number(e.target.value),
-                                      })
+                                      }),
                                     );
                                     saveDD(item.id, "DD", e.target.value);
                                   }}
@@ -650,7 +649,7 @@ const RatingsAnyProgaram = () => {
                                           // field: "scoreTwo",
                                           field: idx,
                                           text: Number(e.target.value),
-                                        })
+                                        }),
                                       );
                                       // saveRatings(item.id, "scoreTwo", e.target.value);
                                       saveRatings(item.id, idx, e.target.value);
@@ -675,12 +674,12 @@ const RatingsAnyProgaram = () => {
                                         idActive: activeSportsmanNum,
                                         fine: "fine",
                                         text: Number(e.target.value),
-                                      })
+                                      }),
                                     );
                                     fineRatings(
                                       item.id,
                                       "fine",
-                                      e.target.value
+                                      e.target.value,
                                     );
                                   }}
                                   isAllowed={(values) => {
@@ -690,7 +689,7 @@ const RatingsAnyProgaram = () => {
                                 />
                               </td>
                             </tr>
-                          )
+                          ),
                         )}
                         <tr className="table__header">
                           <td colSpan={9}>IMPRESSION</td>
@@ -706,7 +705,7 @@ const RatingsAnyProgaram = () => {
                                       saveRatingsElemetImpression(
                                         item.id,
                                         idx,
-                                        itemElement
+                                        itemElement,
                                       );
                                     }}
                                     items={arrayBodyText}
@@ -724,7 +723,7 @@ const RatingsAnyProgaram = () => {
                                       saveRatingsElemetImpression(
                                         item.id,
                                         idx,
-                                        itemElement
+                                        itemElement,
                                       );
                                     }}
                                     items={arrayBodyText}
@@ -765,13 +764,13 @@ const RatingsAnyProgaram = () => {
                                           // field: "scoreTwo",
                                           field: idx,
                                           text: Number(e.target.value),
-                                        })
+                                        }),
                                       );
                                       // saveRatings(item.id, "scoreTwo", e.target.value);
                                       saveRatingsImpresson(
                                         item.id,
                                         idx,
-                                        e.target.value
+                                        e.target.value,
                                       );
                                     }}
                                     isAllowed={(values) => {
@@ -794,12 +793,12 @@ const RatingsAnyProgaram = () => {
                                         idActive: activeSportsmanNum,
                                         fine: "fine",
                                         text: Number(e.target.value),
-                                      })
+                                      }),
                                     );
                                     fineRatingsImpression(
                                       item.id,
                                       "fine",
-                                      e.target.value
+                                      e.target.value,
                                     );
                                   }}
                                   isAllowed={(values) => {
@@ -809,7 +808,7 @@ const RatingsAnyProgaram = () => {
                                 />
                               </td>
                             </tr>
-                          )
+                          ),
                         )}
                       </tbody>
                     </table>
@@ -829,13 +828,13 @@ const RatingsAnyProgaram = () => {
                                 idActive: activeSportsmanNum,
                                 // DD: idx,
                                 text: Number(e.target.value),
-                              })
+                              }),
                             );
                             // saveRatings(item.id, "scoreTwo", e.target.value);
                             saveSinxr(
                               activeRatingsSportsmansAnyProgram.id,
                               "sinxr",
-                              e.target.value
+                              e.target.value,
                             );
                           }}
                           // isAllowed={(values) => {
@@ -878,13 +877,13 @@ const RatingsAnyProgaram = () => {
                             activeRatingsSportsmansChange({
                               activeSportsman:
                                 ratingsSportsmansAnyProgram[index],
-                            })
+                            }),
                           );
                           dispatch(
                             ratingsSlicAnyProgrameGetThunk({
                               groupId,
                               disciplineId,
-                            })
+                            }),
                           );
                         }}
                         className={
@@ -1023,7 +1022,7 @@ const RatingsAnyProgaram = () => {
                             {activeRatingsSportsmansAnyProgram.MPScoreAnyProgramArray[0].scores.map(
                               (score, idx) => (
                                 <th key={idx}>{idx + 1}</th>
-                              )
+                              ),
                             )}
                           </tr>
                         </thead>
@@ -1042,7 +1041,7 @@ const RatingsAnyProgaram = () => {
                                         saveRatingsElemet(
                                           item.id,
                                           idx,
-                                          itemElement
+                                          itemElement,
                                         );
                                       }}
                                       items={arrayBodyText}
@@ -1060,7 +1059,7 @@ const RatingsAnyProgaram = () => {
                                         saveRatingsElemet(
                                           item.id,
                                           idx,
-                                          itemElement
+                                          itemElement,
                                         );
                                       }}
                                       items={arrayBodyText}
@@ -1083,7 +1082,7 @@ const RatingsAnyProgaram = () => {
                                           idActive: activeSportsmanNum,
                                           // DD: idx,
                                           text: Number(e.target.value),
-                                        })
+                                        }),
                                       );
                                       saveDD(item.id, "DD", e.target.value);
                                     }}
@@ -1123,13 +1122,13 @@ const RatingsAnyProgaram = () => {
                                             // field: "scoreTwo",
                                             field: idx,
                                             text: Number(e.target.value),
-                                          })
+                                          }),
                                         );
                                         // saveRatings(item.id, "scoreTwo", e.target.value);
                                         saveRatings(
                                           item.id,
                                           idx,
-                                          e.target.value
+                                          e.target.value,
                                         );
                                       }}
                                       // isAllowed={(values) => {
@@ -1152,12 +1151,12 @@ const RatingsAnyProgaram = () => {
                                           idActive: activeSportsmanNum,
                                           fine: "fine",
                                           text: Number(e.target.value),
-                                        })
+                                        }),
                                       );
                                       fineRatings(
                                         item.id,
                                         "fine",
-                                        e.target.value
+                                        e.target.value,
                                       );
                                     }}
                                     isAllowed={(values) => {
@@ -1167,7 +1166,7 @@ const RatingsAnyProgaram = () => {
                                   />
                                 </td>
                               </tr>
-                            )
+                            ),
                           )}
                           <tr className="table__header">
                             <td colSpan={9}>IMPRESSION</td>
@@ -1183,7 +1182,7 @@ const RatingsAnyProgaram = () => {
                                         saveRatingsElemetImpression(
                                           item.id,
                                           idx,
-                                          itemElement
+                                          itemElement,
                                         );
                                       }}
                                       items={arrayBodyText}
@@ -1201,7 +1200,7 @@ const RatingsAnyProgaram = () => {
                                         saveRatingsElemetImpression(
                                           item.id,
                                           idx,
-                                          itemElement
+                                          itemElement,
                                         );
                                       }}
                                       items={arrayBodyText}
@@ -1242,13 +1241,13 @@ const RatingsAnyProgaram = () => {
                                             // field: "scoreTwo",
                                             field: idx,
                                             text: Number(e.target.value),
-                                          })
+                                          }),
                                         );
                                         // saveRatings(item.id, "scoreTwo", e.target.value);
                                         saveRatingsImpresson(
                                           item.id,
                                           idx,
-                                          e.target.value
+                                          e.target.value,
                                         );
                                       }}
                                       isAllowed={(values) => {
@@ -1271,12 +1270,12 @@ const RatingsAnyProgaram = () => {
                                           idActive: activeSportsmanNum,
                                           fine: "fine",
                                           text: Number(e.target.value),
-                                        })
+                                        }),
                                       );
                                       fineRatingsImpression(
                                         item.id,
                                         "fine",
-                                        e.target.value
+                                        e.target.value,
                                       );
                                     }}
                                     isAllowed={(values) => {
@@ -1286,7 +1285,7 @@ const RatingsAnyProgaram = () => {
                                   />
                                 </td>
                               </tr>
-                            )
+                            ),
                           )}
                         </tbody>
                       </table>
@@ -1306,13 +1305,13 @@ const RatingsAnyProgaram = () => {
                                   idActive: activeSportsmanNum,
                                   // DD: idx,
                                   text: Number(e.target.value),
-                                })
+                                }),
                               );
                               // saveRatings(item.id, "scoreTwo", e.target.value);
                               saveSinxr(
                                 activeRatingsSportsmansAnyProgram.id,
                                 "sinxr",
-                                e.target.value
+                                e.target.value,
                               );
                             }}
                             // isAllowed={(values) => {
@@ -1336,4 +1335,4 @@ const RatingsAnyProgaram = () => {
   );
 };
 
-export default RatingsAnyProgaram;
+export default JuniorsRating;

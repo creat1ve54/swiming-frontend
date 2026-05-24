@@ -24,23 +24,23 @@ const ComponentToPrintDocumentResultAnyProgram = ({
   const dispatch = useDispatch();
 
   const { tournamentName } = useAppSelector(
-    (state) => state.tournamentNameSlice.tournament
+    (state) => state.tournamentNameSlice.tournament,
   );
   const { dateAndPlaceOfRealization } = useAppSelector(
-    (state) => state.tournamentNameSlice.tournament
+    (state) => state.tournamentNameSlice.tournament,
   );
   const { mainProgram } = useAppSelector(
-    (store) => store.mandatoryProgramRefereeSlice
+    (store) => store.mandatoryProgramRefereeSlice,
   );
 
   const { ageGroup } = useAppSelector((state) => state.ageGroupSlice);
 
   const { subgroupFigures, subgroupFiguresResult } = useAppSelector(
-    (state) => state.subgroupFiguresSlice
+    (state) => state.subgroupFiguresSlice,
   );
 
   const { ratingsSportsmans, activeRatingsSportsmans } = useAppSelector(
-    (state) => state.ratingsSlice
+    (state) => state.ratingsSlice,
   );
 
   const { ratingsSportsmansAnyProgram, activeRatingsSportsmansAnyProgram } =
@@ -82,7 +82,6 @@ const ComponentToPrintDocumentResultAnyProgram = ({
     // console.log(nameId);
 
     console.log(groupId, disciplineId);
-    
 
     if (groupId != 1) {
       dispatch(ratingsSliceGetThunk(groupId == 2 ? 1 : 2));
@@ -102,16 +101,29 @@ const ComponentToPrintDocumentResultAnyProgram = ({
 
     console.log(newArray);
 
-    newArray
-      .sort((a, b) => b.scoresResultFinishThree - a.scoresResultFinishThree)
-      .map((item) => {
-        if (!item.anyTeamProgram?.outOfCompetitions) {
-          index++;
-          item.numberSort = index;
-        } else {
-          item.numberSort = null;
-        }
-      });
+    if (disciplineId !== 5) {
+      newArray
+        .sort((a, b) => b.scoresResultFinishThree - a.scoresResultFinishThree)
+        .map((item) => {
+          if (!item.anyTeamProgram?.outOfCompetitions) {
+            index++;
+            item.numberSort = index;
+          } else {
+            item.numberSort = null;
+          }
+        });
+    } else {
+      newArray
+        .sort((a, b) => b.scoresResultFinishTwo - a.scoresResultFinishTwo)
+        .map((item) => {
+          if (!item.anyTeamProgram?.outOfCompetitions) {
+            index++;
+            item.numberSort = index;
+          } else {
+            item.numberSort = null;
+          }
+        });
+    }
 
     console.log(newArray);
 
@@ -201,7 +213,7 @@ const ComponentToPrintDocumentResultAnyProgram = ({
                         <div key={sportsmanIdx}>
                           {sportsman?.surnameAndFirstname}
                         </div>
-                      )
+                      ),
                     )}
                   </td>
                   <td>
@@ -209,7 +221,7 @@ const ComponentToPrintDocumentResultAnyProgram = ({
                     {item.anyTeamProgram.sportsmansArray.map(
                       (sportsman, sportsmanIdx) => (
                         <div key={sportsmanIdx}>{sportsman?.years}</div>
-                      )
+                      ),
                     )}
                   </td>
                   <td>
@@ -219,7 +231,7 @@ const ComponentToPrintDocumentResultAnyProgram = ({
                         <div key={sportsmanIdx}>
                           {sportsman?.sportCategory?.name}
                         </div>
-                      )
+                      ),
                     )}
                   </td>
 

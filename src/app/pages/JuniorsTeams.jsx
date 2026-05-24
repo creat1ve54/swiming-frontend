@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
+import Svg from "../../assets/svg/Svg";
 import DropDown from "../item/DropDown";
-import { useAppSelector } from "../../redux/hooks";
+import HeaderComponent from "../components/HeaderComponent";
 import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../redux/hooks";
 import {
   anyTeamProgramSliceCreateThunk,
   anyTeamProgramSliceDeleteSportsmanThunk,
@@ -16,10 +18,8 @@ import {
   anyTeamProgramSlicePutSportsmanThunk,
   anyTeamProgramSlicePutThunk,
 } from "../../redux/anyTeamProgram/anyTeamProgramSlice";
-import HeaderComponent from "../components/HeaderComponent";
-import Svg from "../../assets/svg/Svg";
 
-const AnyProgramTeam = () => {
+const JuniorsTeams = () => {
   let data = useLocation();
   const navigate = useNavigate();
   const {
@@ -30,24 +30,19 @@ const AnyProgramTeam = () => {
     categories,
   } = data.state;
 
-  //   anyTeamProgram: 4,
-  //   anyTeamProgramYears: 3,
-  //   anyTeamProgramName: 'Комби',
-  //   anyTeamProgramYars: 'Юниоры',
-
   const dispatch = useDispatch();
 
   const { anyTeamPrograms, teams } = useAppSelector(
-    (state) => state.anyTeamProgramSlice
+    (state) => state.anyTeamProgramSlice,
   );
 
   const putTeamItem = (anyTeamProgramsId, teamId) => {
     dispatch(anyTeamProgramSlicePutThunk({ anyTeamProgramsId, teamId })).then(
       () => {
         dispatch(
-          anyTeamProgramSliceGetThunk({ anyTeamProgram, anyTeamProgramYears })
+          anyTeamProgramSliceGetThunk({ anyTeamProgram, anyTeamProgramYears }),
         );
-      }
+      },
     );
   };
 
@@ -60,7 +55,7 @@ const AnyProgramTeam = () => {
 
     dispatch(anyTeamProgramSliceCreateThunk(creatyAnyTeamProgram)).then(() => {
       dispatch(
-        anyTeamProgramSliceGetThunk({ anyTeamProgram, anyTeamProgramYears })
+        anyTeamProgramSliceGetThunk({ anyTeamProgram, anyTeamProgramYears }),
       );
     });
   };
@@ -68,7 +63,7 @@ const AnyProgramTeam = () => {
   const createAnyTeamProgramSporstsman = (teamId) => {
     dispatch(anyTeamProgramSlicePostSportsmanThunk(teamId)).then(() => {
       dispatch(
-        anyTeamProgramSliceGetThunk({ anyTeamProgram, anyTeamProgramYears })
+        anyTeamProgramSliceGetThunk({ anyTeamProgram, anyTeamProgramYears }),
       );
     });
   };
@@ -76,7 +71,7 @@ const AnyProgramTeam = () => {
   const deleteAnyTeamProgramSporstsman = (sportsman) => {
     dispatch(anyTeamProgramSliceDeleteSportsmanThunk(sportsman)).then(() => {
       dispatch(
-        anyTeamProgramSliceGetThunk({ anyTeamProgram, anyTeamProgramYears })
+        anyTeamProgramSliceGetThunk({ anyTeamProgram, anyTeamProgramYears }),
       );
     });
   };
@@ -84,7 +79,7 @@ const AnyProgramTeam = () => {
   const deleteAnyTeamProgramTeam = (id) => {
     dispatch(anyTeamProgramSliceDeleteTeamThunk(id)).then(() => {
       dispatch(
-        anyTeamProgramSliceGetThunk({ anyTeamProgram, anyTeamProgramYears })
+        anyTeamProgramSliceGetThunk({ anyTeamProgram, anyTeamProgramYears }),
       );
     });
   };
@@ -92,17 +87,17 @@ const AnyProgramTeam = () => {
   const saveAnyTeamProgramSportsman = (
     anyTeamProgramsId,
     sportsmanId,
-    index
+    index,
   ) => {
     dispatch(
       anyTeamProgramSlicePutSportsmanThunk({
         anyTeamProgramsId,
         sportsmanId,
         index,
-      })
+      }),
     ).then(() => {
       dispatch(
-        anyTeamProgramSliceGetThunk({ anyTeamProgram, anyTeamProgramYears })
+        anyTeamProgramSliceGetThunk({ anyTeamProgram, anyTeamProgramYears }),
       );
     });
   };
@@ -110,17 +105,17 @@ const AnyProgramTeam = () => {
   const saveAnyTeamProgramOutOfCompetition = (
     anyTeamProgramsId,
     checked,
-    index
+    index,
   ) => {
     dispatch(
       anyTeamProgramSlicePutSportsmanOutOfCompetitionThunk({
         anyTeamProgramsId,
         checked,
         index,
-      })
+      }),
     ).then(() => {
       dispatch(
-        anyTeamProgramSliceGetThunk({ anyTeamProgram, anyTeamProgramYears })
+        anyTeamProgramSliceGetThunk({ anyTeamProgram, anyTeamProgramYears }),
       );
     });
   };
@@ -131,25 +126,25 @@ const AnyProgramTeam = () => {
         anyTeamProgramsId,
         checked,
         index,
-      })
+      }),
     ).then(() => {
       dispatch(
-        anyTeamProgramSliceGetThunk({ anyTeamProgram, anyTeamProgramYears })
+        anyTeamProgramSliceGetThunk({ anyTeamProgram, anyTeamProgramYears }),
       );
     });
   };
 
   useEffect(() => {
     dispatch(
-      anyTeamProgramSliceGetTeamsThunk({ anyTeamProgramYears, anyTeamProgram })
-    ).then((data) => {
+      anyTeamProgramSliceGetTeamsThunk({ anyTeamProgramYears, anyTeamProgram }),
+    ).then((data) => {   
       if (data.payload.length == 0) {
         alert("Нет команд");
         navigate(-1);
         return;
       } else {
         dispatch(
-          anyTeamProgramSliceGetThunk({ anyTeamProgram, anyTeamProgramYears })
+          anyTeamProgramSliceGetThunk({ anyTeamProgram, anyTeamProgramYears }),
         ).then((dataGet) => {
           // if (dataGet.payload.length == 0) {
           //   createAnyTeamProgram();
@@ -169,7 +164,7 @@ const AnyProgramTeam = () => {
         <div className="container">
           <HeaderComponent
             title={categories}
-            link="/programms/arbitrary-program/any-team-program"
+            link="/programms/juniors/team-program"
           />
           <div className="any-program-team__container">
             <table className="any-program-team__table">
@@ -221,7 +216,7 @@ const AnyProgramTeam = () => {
                               saveAnyTeamProgramOutOfCompetition(
                                 program.id,
                                 e.target.checked,
-                                index
+                                index,
                               )
                             }
                           />
@@ -252,7 +247,7 @@ const AnyProgramTeam = () => {
                                         saveAnyTeamProgramSportsman(
                                           program.id,
                                           item.id,
-                                          index
+                                          index,
                                         );
                                       }}
                                       items={program.team.sportsmansArray}
@@ -268,7 +263,7 @@ const AnyProgramTeam = () => {
                                         saveAnyTeamProgramSportsman(
                                           program.id,
                                           item.id,
-                                          index
+                                          index,
                                         );
                                       }}
                                       items={program.team.sportsmansArray}
@@ -319,7 +314,7 @@ const AnyProgramTeam = () => {
                                   saveAnyTeamProgramReserve(
                                     program.id,
                                     e.target.checked,
-                                    index
+                                    index,
                                   )
                                 }
                               />
@@ -341,7 +336,7 @@ const AnyProgramTeam = () => {
                                     className="any-program-team__btn any-program-team__btn--add"
                                     onClick={() => {
                                       createAnyTeamProgramSporstsman(
-                                        program.id
+                                        program.id,
                                       );
                                       setIsOpen(false);
                                     }}
@@ -395,4 +390,4 @@ const AnyProgramTeam = () => {
   );
 };
 
-export default AnyProgramTeam;
+export default JuniorsTeams;

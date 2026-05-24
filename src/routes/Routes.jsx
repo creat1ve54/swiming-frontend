@@ -27,6 +27,10 @@ import ReferencesInfo from "../app/pages/ReferencesInfo";
 import ReferencesProgrammBtnInfo from "../app/pages/ReferencesProgrammBtnInfo";
 import ReferencesProgrammInfo from "../app/pages/ReferencesProgrammInfo";
 import Participants from "../app/pages/Participants";
+import JuniorsTeams from "../app/pages/JuniorsTeams";
+import JuniorsJudingTeam from "../app/pages/JuniorsJudingTeam";
+import JuniorsDraw from "../app/pages/JuniorsDraw";
+import JuniorsRating from "../app/pages/JuniorsRating";
 
 const AppRoutes = () => {
   return (
@@ -83,7 +87,41 @@ const AppRoutes = () => {
         path="/programms/arbitrary-program/ratings-any-program-documents/:name"
         element={<ResutAnyProgramDocuments />}
       ></Route>
-      <Route path="/programms/juniors" element={<Juniors />}></Route>
+      {/* JUNIORS  */}
+      <Route path="/programms/juniors/*" element={<Juniors />}></Route>
+      <Route
+        path="/programms/juniors/team-program/:name"
+        element={<JuniorsTeams />}
+      ></Route>
+      <Route
+        path="/programms/juniors/the-judging-team/:name"
+        element={<JuniorsJudingTeam />}
+      ></Route>
+      <Route
+        path="/programms/juniors/the-draw/:name"
+        element={<JuniorsDraw />}
+      ></Route>
+      <Route
+        path="/programms/juniors/rating/:name"
+        element={<JuniorsRating />}
+      ></Route>
+      {/* <Route
+        path="/programms/arbitrary-program/the-judging-team-any-program/:name"
+        element={<TheJudgingTeamAnyProgram />}
+      ></Route>
+      <Route
+        path="/programms/arbitrary-program/the-draw-any-program/:name"
+        element={<TheDrawAnyProgram />}
+      ></Route>
+      <Route
+        path="/programms/arbitrary-program/ratings-any-program/:name"
+        element={<RatingsAnyProgaram />}
+      ></Route>
+      <Route
+        path="/programms/arbitrary-program/ratings-any-program-documents/:name"
+        element={<ResutAnyProgramDocuments />}
+      ></Route> */}
+      {/* <Route path="/programms/juniors" element={<Juniors />}></Route> */}
       <Route path="/references" element={<References />}></Route>
       <Route
         path="/references/references-info"

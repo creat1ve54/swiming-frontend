@@ -9,6 +9,7 @@ const fetchBreadcrumbName = (segment, location) => {
     ["programms", "Программы"],
     ["mandatory-program", "Обязательная"],
     ["the-judging-team", "Судейские бригады"],
+    ["team-program", "Команды"],
     ["mandatory-program-list", "Фигуры"],
     ["the-draw", "Жеребьевка"],
     ["ratings", "Ввод оценок"],
@@ -34,6 +35,7 @@ const fetchBreadcrumbName = (segment, location) => {
     ["akrobat-grypa", "Акробатическая группа"],
     ["solo", "Соло"],
     ["", ""],
+    ["juniors", "Техническая"],
   ]);
 
   if (location.state && dynamicNames.has("references-info")) {
